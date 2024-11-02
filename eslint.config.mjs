@@ -5,7 +5,7 @@ import pluginJs from "@eslint/js";
 export default [
   {
     languageOptions: {
-      globals: { ...globals.node, MY_CUSTOM_GLOBAL: "readonly" }, // ...globals.browser,
+      globals: { ...globals.node, ...globals.jest }, // ...globals.browser,
     },
   },
   pluginJs.configs.recommended,
