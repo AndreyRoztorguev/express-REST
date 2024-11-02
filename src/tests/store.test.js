@@ -1,24 +1,19 @@
-import { getAll, getById, create, updateById, deleteById } from "../store.js";
-import { writeFileSync } from "node:fs";
-import { join } from "node:path";
-
-const dbPath = join(process.cwd(), "db.json");
-
-const restoreDb = () => writeFileSync(dbPath, JSON.stringify([]));
-
-const populateDb = (data) => writeFileSync(dbPath, JSON.stringify(data));
+import { create, deleteById, getAll, getById, updateById } from "../store.js";
+import { existingId, inventedId } from "./fixtures.js";
+import { populateDb, restoreDb } from "./utils.js";
 
 const fixtures = [
   { id: 1, message: "test" },
   { id: 2, message: "hello world" },
 ];
 
-const inventedId = 12345;
-const existingId = fixtures[0].id;
-
 describe("store", () => {
-  beforeEach(() => populateDb(fixtures));
-  afterAll(restoreDb);
+  beforeEach(() => {
+    populateDb(fixtures);
+  });
+  afterAll(() => {
+    restoreDb();
+  });
 
   describe("getAll", () => {
     it("Should return an empty array when there's no data", async () => {
