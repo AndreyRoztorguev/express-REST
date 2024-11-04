@@ -1,15 +1,10 @@
 import { create, deleteById, getAll, getById, updateById } from "../store.js";
-import { existingId, inventedId } from "./fixtures.js";
+import { existingId, inventedId, whispers } from "./whispers.js";
 import { populateDb, restoreDb } from "./utils.js";
-
-const fixtures = [
-  { id: 1, message: "test" },
-  { id: 2, message: "hello world" },
-];
 
 describe("store", () => {
   beforeEach(() => {
-    populateDb(fixtures);
+    populateDb(whispers);
   });
   afterAll(() => {
     restoreDb();
@@ -24,7 +19,7 @@ describe("store", () => {
 
     it("Should return an array with two items", async () => {
       const data = await getAll();
-      expect(data).toEqual(fixtures);
+      expect(data).toEqual(whispers);
     });
   });
 
@@ -34,20 +29,20 @@ describe("store", () => {
       expect(item).toBeUndefined();
     });
     it("Should return the item with the given id", async () => {
-      const item = await getById(fixtures[0].id);
-      expect(item).toEqual(fixtures[0]);
+      const item = await getById(whispers[0].id);
+      expect(item).toEqual(whispers[0]);
     });
   });
 
   describe("create", () => {
     it("Should return the created item", async () => {
-      const newItem = { id: fixtures.length + 1, message: "test 3" };
+      const newItem = { id: whispers.length + 1, message: "test 3" };
       const item = await create(newItem.message);
       expect(item).toEqual(newItem);
     });
 
     it("Should add the item to the db", async () => {
-      const newItem = { id: fixtures.length + 1, message: "test3" };
+      const newItem = { id: whispers.length + 1, message: "test3" };
       const { id } = await create(newItem.message);
       const item = await getById(id);
       expect(item).toEqual(newItem);
@@ -88,7 +83,7 @@ describe("store", () => {
     it("Should delete the item from the db", async () => {
       await deleteById(existingId);
       const items = await getAll();
-      expect(items).toEqual(fixtures.filter((item) => item.id !== existingId));
+      expect(items).toEqual(whispers.filter((item) => item.id !== existingId));
     });
   });
 });

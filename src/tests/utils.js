@@ -7,8 +7,6 @@ const restoreDb = () => writeFileSync(dbPath, JSON.stringify([]));
 
 const populateDb = (data) => {
   try {
-    console.log("data", data);
-
     writeFileSync(dbPath, JSON.stringify(data));
   } catch (error) {
     console.error("Error writing to database:", error);

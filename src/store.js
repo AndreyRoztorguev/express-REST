@@ -3,12 +3,6 @@ import path from "node:path";
 
 const filename = path.join(process.cwd(), "db.json");
 
-// const saveChanges = async (data) => {
-//   const db = await readData();
-//   db.push(data);
-//   fs.writeFile(filename, JSON.stringify(db));
-// };
-
 const saveChanges = (data) => fs.writeFile(filename, JSON.stringify(data));
 
 const readData = async () => {
