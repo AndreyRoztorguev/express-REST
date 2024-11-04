@@ -1,5 +1,5 @@
 import express from "express";
-import { getAll, getById, create, updateById, deleteById } from "./store.js";
+import { getAll, getById, create, updateById, deleteById } from "./database.js";
 
 const app = express();
 app.use(express.json());
@@ -12,7 +12,7 @@ app.get("/api/v1/whisper", async (req, res) => {
 });
 
 app.get("/api/v1/whisper/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const whisper = await getById(id);
   if (!whisper) {
     res.sendStatus(404);
@@ -33,7 +33,7 @@ app.post("/api/v1/whisper", async (req, res) => {
 
 app.put("/api/v1/whisper/:id", async (req, res) => {
   const { message } = req.body;
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   if (!message) {
     res.sendStatus(400);
   } else {
@@ -48,7 +48,7 @@ app.put("/api/v1/whisper/:id", async (req, res) => {
 });
 
 app.delete("/api/v1/whisper/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const whisper = await getById(id);
   if (!whisper) {
     res.sendStatus(404);

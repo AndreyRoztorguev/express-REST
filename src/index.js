@@ -1,9 +1,15 @@
+import mongoose from "mongoose";
 import { app } from "./server.js";
-import path from "node:path";
 
-const port = 3000;
+const port = +process.env.SERVER_PORT || 3001;
 
-app.listen(port, () => {
-  console.log(path.join(process.cwd(), "db.json"));
-  console.log(`Running in http://localhost:${port}`);
-});
+try {
+  await mongoose.connect(process.env.MONGODB_URI);
+  console.log("Connected to MongoDB");
+
+  app.listen(port, () => {
+    console.log(`Running in http://localhost:${port}`);
+  });
+} catch (error) {
+  console.error(error);
+}

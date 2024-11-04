@@ -4,10 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "node --watch src/index.js",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
+    "start": "node --env-file=.env src/index.js",
+    "dev": "node --env-file=.env --watch src/index.js",
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans",
+    "compose:db": "docker-compose exec database /bin/bash",
+    "docker:db": "docker exec -it whispering-database /bin/bash",
+    "test": "jest --detectOpenHandles --setupFiles dotenv/config",
+    "test:coverage": "jest --coverage --setupFiles dotenv/config",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
@@ -16,8 +20,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
-    "express": "4.18.3"
+    "express": "4.18.3",
+    "mongoose": "^8.8.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
