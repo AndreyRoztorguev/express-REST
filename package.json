@@ -11,6 +11,7 @@
     "compose:db": "docker-compose exec database /bin/bash",
     "docker:db": "docker exec -it whispering-database /bin/bash",
     "test": "jest --detectOpenHandles --setupFiles dotenv/config",
+    "jest": "jest --detectOpenHandles --setupFiles dotenv/config -t",
     "test:coverage": "jest --coverage --setupFiles dotenv/config",
     "lint": "eslint",
     "lint:fix": "eslint --fix"
@@ -20,10 +21,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "4.18.3",
-    "mongoose": "^8.8.0"
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.0",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.0",
