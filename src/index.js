@@ -4,7 +4,7 @@ import { app } from "./server.js";
 const port = +process.env.SERVER_PORT || 3001;
 
 try {
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(process.env.MONGO_DB_URI);
   console.log("Connected to MongoDB");
 
   app.listen(port, () => {

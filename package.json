@@ -1,12 +1,13 @@
 {
-  "name": "my-app",
+  "name": "express-server-app",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env src/index.js",
     "dev": "node --env-file=.env --watch src/index.js",
-    "compose:up": "docker-compose up -d --build",
+    "compose:up": "docker-compose --env-file .env up --build",
+    "compose:up-old": "docker-compose up -d --build",
     "compose:down": "docker-compose down --remove-orphans",
     "compose:db": "docker-compose exec database /bin/bash",
     "docker:db": "docker exec -it whispering-database /bin/bash",

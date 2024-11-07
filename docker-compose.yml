@@ -1,10 +1,41 @@
 services:
+  server:
+    container_name: "express-server"
+    restart: always
+    user: node
+    working_dir: /usr/src/app
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+      args:
+        NODE_VERSION: 22.11.0
+        NODE_ENV: production
+    environment:
+      SERVER_PORT: 3000
+      MONGO_DB_URI: mongodb://database/whispering-database
+      SALT_ROUNDS: 10
+      JWT_SECRET: Tu1fefo3mgregO0PcAvjq^q3wQee3f24BXNI8$4r9R
+    ports:
+      - "3001:3000"
+    command: ["npm", "start"]
+    depends_on:
+      database:
+        condition: service_healthy
   database:
-    container_name: whispering-database
+    container_name: mongo_db
     image: mongo
+    restart: always
     ports:
       - "27017:27017"
     volumes:
       - db-storage:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 30s
+      retries: 3
+      start_period: 10s
+      timeout: 10s
+
 volumes:
   db-storage:
