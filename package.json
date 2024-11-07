@@ -16,8 +16,16 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "express",
+    "server",
+    "nodejs",
+    "REST",
+    "api",
+    "mongodb",
+    "ejs"
+  ],
+  "author": "andrew.roztor99@gmail.com",
   "license": "ISC",
   "description": "",
   "dependencies": {
@@ -37,5 +45,16 @@
     "globals": "^15.11.0",
     "jest": "^29.7.0",
     "supertest": "^7.0.0"
-  }
+  },
+  "engines": {
+    "node": ">=22.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreyRoztorguev/express-REST.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AndreyRoztorguev/express-REST/issues"
+  },
+  "homepage": "https://github.com/AndreyRoztorguev/express-REST"
 }
