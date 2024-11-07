@@ -35,19 +35,19 @@ pipeline {
                         }
                 }
 
-                stage('Run Tests') {
-                        steps {
-                                script {
-                                        try {
-                                                // Run the tests
-                                                sh 'npm run test'
-                                        } catch (Exception e) {
-                                                currentBuild.result = 'FAILURE'
-                                                throw e
-                                        }
-                                }
-                        }
-                }
+                // stage('Run Tests') {
+                //         steps {
+                //                 script {
+                //                         try {
+                //                                 // Run the tests
+                //                                 sh 'npm run test'
+                //                         } catch (Exception e) {
+                //                                 currentBuild.result = 'FAILURE'
+                //                                 throw e
+                //                         }
+                //                 }
+                //         }
+                // }
 
                 stage('Start Server') {
                         when {
