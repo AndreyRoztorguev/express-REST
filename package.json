@@ -4,9 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env src/index.js",
+    "start": "node src/index.js",
     "dev": "node --env-file=.env --watch src/index.js",
-    "compose:up": "docker-compose --env-file .env up --build",
+    "compose:up": "docker-compose up --build",
     "compose:up-old": "docker-compose up -d --build",
     "compose:down": "docker-compose down --remove-orphans",
     "compose:db": "docker-compose exec database /bin/bash",
