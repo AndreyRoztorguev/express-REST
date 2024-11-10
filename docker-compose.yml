@@ -16,6 +16,7 @@ services:
       MONGO_DB_URI: mongodb://database/whispering-database
       SALT_ROUNDS: 10
       JWT_SECRET: Tu1fefo3mgregO0PcAvjq^q3wQee3f24BXNI8$4r9R
+      LOCALHOST_URL: http://52.205.251.92:3000
     ports:
       - "3000:3000"
     command: ["npm", "start"]

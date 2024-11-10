@@ -8,7 +8,7 @@ try {
   console.log("Connected to MongoDB");
 
   app.listen(port, () => {
-    console.log(`Running in http://localhost:${port}`);
+    console.log(`Running in ${process.env.LOCALHOST_URL}`);
   });
 } catch (error) {
   console.error(error);
