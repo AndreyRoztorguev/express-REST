@@ -43,16 +43,16 @@ function parseJwt(token) {
 
 // -- API --
 const fetchAllWhispers = () =>
-  fetch(`${process.env.LOCALHOST_URL}/api/v1/whisper`, {
+  fetch(`http://localhost:3000/api/v1/whisper`, {
     headers: { Authentication: `Bearer ${accessToken}` },
   }).then((response) => response.json());
 const deleteWhisper = (id) =>
-  fetch(`${process.env.LOCALHOST_URL}/api/v1/whisper/${id}`, {
+  fetch(`http://localhost:3000/api/v1/whisper/${id}`, {
     method: "DELETE",
     headers: { Authentication: `Bearer ${accessToken}` },
   });
 const updateWhisper = (id, message) =>
-  fetch(`${process.env.LOCALHOST_URL}/api/v1/whisper/${id}`, {
+  fetch(`http://localhost:3000/api/v1/whisper/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const updateWhisper = (id, message) =>
     body: JSON.stringify({ message }),
   });
 const createWhisper = (message) =>
-  fetch(`${process.env.LOCALHOST_URL}/api/v1/whisper`, {
+  fetch(`http://localhost:3000/api/v1/whisper`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

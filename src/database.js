@@ -14,7 +14,6 @@ mongoose.set("toJSON", {
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    unique: true,
     trim: true,
     required: [true, "Username is required"],
     minlength: [3, "Username must be at least 3 characters long"],
@@ -23,7 +22,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
-    minlength: [8, "Password must be at least 8 characters long"],
+    minlength: [6, "Password must be at least 6 characters long"],
     validate: {
       validator: checkPasswordStrength,
     },

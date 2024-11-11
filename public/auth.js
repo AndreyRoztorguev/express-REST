@@ -25,7 +25,9 @@ if (locationPath === "/login") {
     })
       .then((response) => {
         if (response.status !== 200) {
-          throw new Error("Invalid credentials");
+          return response.json().then((errorData) => {
+            throw new Error(errorData.error || "Unknown Login error");
+          });
         }
         return response.json();
       })
@@ -60,7 +62,9 @@ if (locationPath === "/signup") {
     })
       .then((response) => {
         if (response.status !== 200) {
-          throw new Error("Error while registering the user");
+          return response.json().then((errorData) => {
+            throw new Error(errorData.error || "Unknown SignUp error");
+          });
         }
         return response.json();
       })

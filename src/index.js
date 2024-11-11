@@ -1,15 +1,23 @@
 import mongoose from "mongoose";
 import { app } from "./server.js";
+import { globalConfig } from "./config/config.js";
+import { getKeyValue } from "./utils.js";
 
-const port = +process.env.SERVER_PORT || 3001;
+const {
+  mongodb: { MONGO_URI },
+  server: { SERVER_PORT },
+} = globalConfig;
+
+getKeyValue(globalConfig);
 
 try {
-  await mongoose.connect(process.env.MONGO_DB_URI);
-  console.log("Connected to MongoDB");
+  await mongoose.connect(MONGO_URI);
+  console.log("\x1b[32mConnected to MongoDB uri:\x1b[0m", `\x1b[34m${MONGO_URI}\x1b[0m`);
 
-  app.listen(port, () => {
-    console.log(`Running in ${process.env.LOCALHOST_URL}`);
+  app.listen(SERVER_PORT, () => {
+    console.log(`\x1b[32mRunning on port \x1b[34m${SERVER_PORT}\x1b[0m`);
   });
 } catch (error) {
   console.error(error);
+  process.exit(1);
 }
